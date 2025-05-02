@@ -7,82 +7,622 @@
   <meta name="description" content="@feelthisray - HTML Script by Feeldream Repl Co">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="./style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@700&family=Roboto&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap');
 
+    :root {
+      --poppins: 'Poppins', sans-serif;
+      --nunito: 'Nunito Sans', sans-serif;
+      --caveat: 'Caveat', cursive;
+      --quicksand: 'Quicksand', sans-serif;
+      --itim: 'Itim', cursive;
+      --inter: 'Inter', sans-serif;
+    }
+
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      background: #000;
+      font-family: 'Itim', cursive;
+      font-size: 14px;
+      color: #fff;
+      text-shadow: 0px 2px 2px rgba(0, 0, 0, .5);
+      margin: 0;
+      padding: 0;
+    }
+
+    #bodyblur {
+      opacity: .2;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,.5);
+      transition: all 1s ease;
+    }
+
+    #thisblur {
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    #wallpaper {
+      width: 100%;
+      height: 100%;
+      transform: scale(1.3);
+      transition: all 1.3s ease;
+    }
+
+    #wallpaper2, #wallpaper3, #wallpaper4 {
+      display: none;
+    }
+
+    @keyframes jj {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    p {
+      margin-left: 50px;
+      margin-right: 70px;
+      text-align: left;
+    }
+
+    #ket {
+      margin: 20px;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: -100px;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-pagination {
+      margin-bottom: 25vh;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #fff !important;
+      opacity: 1 !important;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: rgba(255,255,255, 1) !important;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+      display: flex;
+      top: unset;
+      bottom: -100px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .stiker {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+      transition: all .75s ease;
+    }
+
+    .stiker img {
+      width: 90px;
+      height: 90px;
+      box-shadow: 0 4px 30px rgba(255,255,255, 0.3);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      background: rgba(255, 255, 255, .3);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      padding: 10px;
+    }
+
+    .stiker img.sty2 {
+      background: none;
+      filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      width: auto;
+      height: 90px;
+    }
+
+    b.merah { color: red; }
+    b.kuning { color: yellow; }
+    b.putih {
+      text-shadow: none;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      background-color: white;
+      border-radius: 12px;
+    }
+
+    span.garismerah { border-bottom: 2px solid red; }
+    span.gariskuning { border-bottom: 2px solid yellow; }
+
+    p {
+      color: white;
+      font-size: 15px;
+      line-height: 1.5em;
+    }
+
+    .scale0 {
+      opacity: 0;
+      transform: scale(0);
+      transition: all .9s ease;
+    }
+
+    .scale1 {
+      opacity: 1;
+      transform: scale(1);
+      transition: all .9s ease;
+    }
+
+    svg {
+      vertical-align: middle;
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    .heart-icon {
+      opacity: .5;
+      z-index: 100;
+      width: 25px;
+      height: 25px;
+      position: fixed;
+      animation: heartMove linear 1;
+      top: -10vh;
+    }
+
+    @keyframes heartMove {
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(100vh); }
+    }
+
+    svg.line {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      animation: moving .7s linear infinite alternate;
+    }
+
+    .spin {
+      animation: spin 3s linear infinite alternate;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(20deg); }
+      to { transform: rotate(-20deg); }
+    }
+
+    @keyframes moving {
+      from { transform: translateY(0); }
+      to { transform: translateY(3px); }
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+      z-index: 100;
+    }
+
+    .loading-message {
+      font-size: 13px;
+      text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);
+      color: white;
+      text-align: center;
+    }
+
+    .blocklove {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lovein {
+      background: #fff;
+      color: #FF0900;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      transition: all .3s ease;
+    }
+
+    .lovein:hover {
+      transform: scale(.9);
+      color: #FF0900;
+    }
+
+    .lovein svg {
+      stroke: #FF0600;
+      width: 30px;
+      height: 30px;
+    }
+
+    .blocktext {
+      margin-top: 10px;
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: auto;
+      background-color: none;
+    }
+
+    .sertifikat {
+      position: relative;
+      width: 330px;
+      height: 236px;
+      text-shadow: none;
+    }
+
+    .sertifikat img {
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .text-overlay {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .text-overlay h1 {
+      font-size: 20px;
+      color: #fff;
+      margin: 0;
+    }
+
+    .text-overlay .sub-title {
+      font-size: 14px;
+      color: yellow;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .text-overlay .main-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+    }
+
+    .content {
+      font-size: 11.5px;
+      color: #fff;
+    }
+
+    .real {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 800;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .tombol {
+      background-color: rgba(255,255,255,0);
+      border-radius: 50px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-transition: all .2s ease-out;
+      transition: all .2s ease-out;
+    }
+
+    .tombol svg {
+      margin: auto;
+      fill: #ffd4d4;
+      stroke: #ff0000;
+      width: 60px;
+      height: 60px;
+      animation: spin2 1s linear infinite alternate;
+    }
+
+    #Tombol {
+      margin-top: 20px;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      transition: all 1s ease;
+    }
+
+    #Tombol a {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      margin: 10px;
+      transition: all .2s ease;
+      padding: 10px;
+      outline: 0;
+      border: 1px solid white;
+      border-radius: 12px;
+      line-height: 15px;
+      background: rgba(0,0,0,.3);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: rgba(255,255,255, 0.15) 0px 7px 29px 0px;
+      z-index: 1;
+    }
+
+    #Tombol, #Tombol2, #TombolWA {
+      position: relative;
+      opacity: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      transition: all 1s ease;
+    }
+
+    #Tombol a, #Tombol2 a, #TombolWA a {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      margin: 10px;
+      transition: all .2s ease;
+      padding: 10px;
+      outline: 0;
+      border: 1px solid white;
+      border-radius: 8px;
+      line-height: 15px;
+      background: rgba(0,0,0,.5);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      box-shadow: rgba(255,255,255, 0.15) 0px 7px 29px 0px;
+      z-index: 1;
+    }
+
+    .swal2-modal > * {
+      color: white;
+    }
+
+    .swal2-title {
+      line-height: 1.3em;
+      font-size: 18px;
+      text-align: center;
+      padding: 15px 30px 0 30px;
+    }
+
+    .swal2-container.swal2-backdrop-show {
+      background: rgba(0,0,0,.5);
+    }
+
+    .swal2-timer-progress-bar-container > * {
+      opacity: .7;
+      background: #00B6FF;
+      margin: 0 2px;
+    }
+
+    .swal2-modal {
+      box-shadow: rgba(255,255,255, 0.3) 0px 7px 29px 0px;
+      background: rgba(0,0,0,.9);
+      max-width: 320px;
+      border-right: 2px solid #fff;
+      border-left: 2px solid #fff;
+      border-radius: 4px;
+      top: -50px;
+    }
+  </style>
 </head>
+
 <body>
-  <audio src="./assets/foreveryoung.mp3" id="linkmp3" class="hidden" muted></audio>
-	<div class="overlay">
+  <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" id="linkmp3" class="hidden" muted></audio>
+  <div class="overlay">
     <div class="loading-message">Hello you!<br>Wait a moment..</div>
-     <div id="loveIn" class="blocklove">
-        <a href="#" target="_blank" class="lovein"></a>
-        <p id="ket">Touch the LOVE!</p>
-     </div>
-   </div>
-   
-   <div id="bodyblur">
-     <img src="./assets/wp9.jpg" id="wallpaper"/>
-     <div id="thisblur"></div>
-   </div>
-   
-    <!-- Swiper -->
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-                <div id="stiker1" class="scale0 stiker">
-                    <img src="./assets/peach22.gif" />
-                </div>
-                <h1 id="teks1" class="scale0 quicksand" style="font-size: 22px;">Hello You 🫢<br><br> >>>>
-                </h1>
-            </div>
-
-            <div class="swiper-slide">
-                <div id="stiker2" class="scale0 stiker">
-                    <img src="./assets/peachspeech.gif" />
-                </div>
-                <h1 id="teks2" class="scale0 quicksand" style="font-size: 18px;">I Have an Award<br>for You 🫶<br><br> >>>></h1>
-            </div>
-
-            <div class="swiper-slide">
-                <div id="stiker3" class="scale0 sertifikat">
-				    <img src="./assets/certificate.png" alt="Certificate">
-				    
-				    <div id="teks3" class="scale0 text-overlay">
-					    <div class="real">Really, <span style="color:red">No Fake</span></div>
-				        <h1 class="main-title">Certificate</h1>
-				        <div class="sub-title">The kindest and funniest person</div>
-				        <div class="content">Presented exclusively to</div>
-				        <h1 style="font-family:'Great Vibes', cursive; font-size:25px;margin:5px;text-decoration: underline;text-decoration-color:pink">You</h1>
-				        <div class="content">Thank you for being a part of my life<br>and making me feel incredibly lucky to have you.</div>
-				    </div>
-				</div>
-            </div>
-            
-            <div class="swiper-slide">
-                <div id="stiker4" class="scale0 stiker" style="margin-top:50px">
-                    <img id="stikerAkhir1" src="./assets/peachheart.gif" />
-                    <img id="stikerAkhir2" class="hidden" src="./assets/peach6.gif" />
-                    <img id="stikerAkhir3" class="hidden" src="./assets/peach1.gif" />
-                </div>
-                <div id="scroll-container" class="blocktext">
-                    <h1 id="teks4" class="scale0 quicksand" style="font-size: 17px;font-weight:400"><b style="font-size:20px;font-weight:700">Yeaayy!! 🥳</b><br><br>Keep the certificate safe,<br>don't let it get lost 🫣💐</h1>
-                    <h1 id="teksTambahan" class="hidden"><span id="teksLove">I Love Youu</span></h1>
-                    <!-- Emoji Can Be More Than 1 -->
-                    <script>const emojiAcak = ['💖', '❤️', '🧡', '💜', '🩵', '💚', '💙', '🤍', '💛', '🩷']</script>
-                    <script>const emojiAkhir = ['💐']</script>
-                </div>
-            </div>
-
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+    <div id="loveIn" class="blocklove">
+      <a href="#" target="_blank" class="lovein">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+      </a>
+      <p id="ket">Touch the LOVE!</p>
     </div>
+  </div>
 
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> 	 
-	<script src="./script.js"></script>
+  <div id="bodyblur">
+    <img src="https://images.unsplash.com/photo-1525490829609-d171dde7bd9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" id="wallpaper"/>
+    <div id="thisblur"></div>
+  </div>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div id="stiker1" class="scale0 stiker">
+          <img src="https://media.giphy.com/media/26tPplGWjN0xLybiU/giphy.gif" />
+        </div>
+        <h1 id="teks1" class="scale0 quicksand" style="font-size: 22px;">Hello You 🫢<br><br> >>>></h1>
+      </div>
+
+      <div class="swiper-slide">
+        <div id="stiker2" class="scale0 stiker">
+          <img src="https://media.giphy.com/media/l0Iyl55kTeh71nTWw/giphy.gif" />
+        </div>
+        <h1 id="teks2" class="scale0 quicksand" style="font-size: 18px;">I Have an Award<br>for You 🫶<br><br> >>>></h1>
+      </div>
+
+      <div class="swiper-slide">
+        <div id="stiker3" class="scale0 sertifikat">
+          <img src="https://www.pngall.com/wp-content/uploads/2017/01/Certificate-PNG.png" alt="Certificate">
+          <div id="teks3" class="scale0 text-overlay">
+            <div class="real">Really, <span style="color:red">No Fake</span></div>
+            <h1 class="main-title">Certificate</h1>
+            <div class="sub-title">The kindest and funniest person</div>
+            <div class="content">Presented exclusively to</div>
+            <h1 style="font-family:'Great Vibes', cursive; font-size:25px;margin:5px;text-decoration: underline;text-decoration-color:pink">You</h1>
+            <div class="content">Thank you for being a part of my life<br>and making me feel incredibly lucky to have you.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div id="stiker4" class="scale0 stiker" style="margin-top:50px">
+          <img id="stikerAkhir1" src="https://media.giphy.com/media/3o7TKUM3IgJBX2as9O/giphy.gif" />
+          <img id="stikerAkhir2" class="hidden" src="https://media.giphy.com/media/26tPplGWjN0xLybiU/giphy.gif" />
+          <img id="stikerAkhir3" class="hidden" src="https://media.giphy.com/media/l0Iyl55kTeh71nTWw/giphy.gif" />
+        </div>
+        <div id="scroll-container" class="blocktext">
+          <h1 id="teks4" class="scale0 quicksand" style="font-size: 17px;font-weight:400"><b style="font-size:20px;font-weight:700">Yeaayy!! 🥳</b><br><br>Keep the certificate safe,<br>don't let it get lost 🫣💐</h1>
+          <h1 id="teksTambahan" class="hidden"><span id="teksLove">I Love Youu</span></h1>
+          <script>const emojiAcak = ['💖', '❤️', '🧡', '💜', '🩵', '💚', '💙', '🤍', '💛', '🩷'];</script>
+          <script>const emojiAkhir = ['💐'];</script>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swiper
+    document.addEventListener('DOMContentLoaded', function () {
+      const swiper = new Swiper('.mySwiper', {
+        loop: false,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        grabCursor: true,
+        touchRatio: 1,
+        simulateTouch: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+
+      // Reset animations for all slides
+      function resetAnimations() {
+        for (let i = 1; i <= 4; i++) {
+          const elements = document.querySelectorAll(`#stiker${i}, #teks${i}`);
+          elements.forEach(el => el.classList.remove('scale1'));
+        }
+      }
+
+      // Animate elements on slide change
+      swiper.on('slideChange', function () {
+        resetAnimations();
+        const currentSlide = swiper.activeIndex + 1;
+        const elements = document.querySelectorAll(`#stiker${currentSlide}, #teks${currentSlide}`);
+        elements.forEach(el => el.classList.add('scale1'));
+        if (currentSlide === 4) {
+          setTimeout(() => {
+            document.querySelector('#teksTambahan').classList.remove('hidden');
+            new TypeIt('#teksLove', {
+              strings: ['I Love Youu', 'Forever 💖'],
+              speed: 100,
+              loop: true,
+            }).go();
+          }, 1000);
+        }
+      });
+
+      // Initial animation for first slide
+      setTimeout(() => {
+        document.querySelector('#stiker1').classList.add('scale1');
+        document.querySelector('#teks1').classList.add('scale1');
+      }, 3000);
+    });
+
+    // Handle overlay and love button
+    window.onload = function() {
+      setTimeout(() => {
+        document.querySelector('.loading-message').style.display = 'none';
+        document.querySelector('.blocklove').style.display = 'flex';
+      }, 2000);
+
+      document.querySelector('.lovein').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.overlay').style.display = 'none';
+        document.querySelector('#bodyblur').style.opacity = '1';
+        document.querySelector('#linkmp3').muted = false;
+        document.querySelector('#linkmp3').play();
+      });
+    };
+  </script>
 </body>
 </html>
